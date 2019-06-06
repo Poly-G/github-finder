@@ -1,10 +1,17 @@
 import React from "react";
 import "./App.css";
 
+// Components
+import Navbar from "./components/layout/Navbar";
+import UserItem from "./components/users/UserItem";
+
 const App = () => {
   return (
     <div className="App">
-      <h1>Hello</h1>
+      <nav className="navbar bg-primary">
+        <Navbar />
+      </nav>
+      <UserItem />
     </div>
   );
 };
