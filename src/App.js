@@ -3,15 +3,13 @@ import "./App.css";
 
 // Components
 import Navbar from "./components/layout/Navbar";
-import UserItem from "./components/users/UserItem";
+import Users from "./components/users/Users";
 
 const App = () => {
   return (
     <div className="App">
-      <nav className="navbar bg-primary">
-        <Navbar />
-      </nav>
-      <UserItem />
+      <Navbar />
+      <Users />
     </div>
   );
 };
