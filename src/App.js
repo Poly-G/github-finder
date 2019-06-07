@@ -1,19 +1,21 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.css";
 
 // Components
 import Navbar from "./components/layout/Navbar";
 import Users from "./components/users/Users";
 
-const App = () => {
-  return (
-    <div className="App">
-      <Navbar />
-      <div className="container">
-        <Users />
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <div className="container">
+          <Users />
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default App;

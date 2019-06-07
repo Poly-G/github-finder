@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+import UserItem from "../users/UserItem";
 
 const Navbar = () => {
   return (
@@ -8,6 +10,10 @@ const Navbar = () => {
       </h1>
     </nav>
   );
+};
+
+UserItem.propTypes = {
+  user: PropTypes.object.isRequired
 };
 
 export default Navbar;
