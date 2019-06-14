@@ -10,7 +10,8 @@ import Search from "./components/users/Search";
 class App extends Component {
   state = {
     users: [],
-    loading: false
+    loading: false,
+    alert: null
   };
 
   // search GitHub users
@@ -32,11 +33,17 @@ class App extends Component {
   };
 
   // Clear users from state
-
   clearUsers = () => {
     this.setState({
       users: [],
       loading: false
+    });
+  };
+
+  // Set alert if form is empty
+  setAlert = (msg, type) => {
+    this.setState({
+      alert: { msg, type }
     });
   };
 
@@ -51,6 +58,7 @@ class App extends Component {
             searchUsers={this.searchUsers}
             clearUsers={this.clearUsers}
             showClear={users.length > 0 ? true : false}
+            setAlert={this.setAlert}
           />
           <Users users={users} loading={loading} />
         </div>
