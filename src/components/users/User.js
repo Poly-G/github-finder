@@ -1,24 +1,27 @@
 import React, { Fragment, Component } from "react";
 import Spinner from "../layout/Spinner";
+import { Repos } from "../repos/Repos";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 export class User extends Component {
   componentDidMount() {
     this.props.getUser(this.props.match.params.login);
+    this.props.getUserRepos(this.props.match.params.login);
   }
 
   static propTypes = {
     loading: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired,
-    getUser: PropTypes.func.isRequired
+    repos: PropTypes.array.isRequired,
+    getUser: PropTypes.func.isRequired,
+    getUserRepos: PropTypes.func.isRequired
   };
 
   render() {
     const {
       name,
       avatar_url,
-      url,
       location,
       bio,
       blog,
