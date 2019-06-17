@@ -19,7 +19,7 @@ const App = () => {
   const [alert, setAlert] = useState(null);
 
   // search GitHub users
-  searchUsers = async text => {
+  const searchUsers = async text => {
     setLoading(true);
 
     const res = await axios.get(
@@ -33,7 +33,7 @@ const App = () => {
   };
 
   // Get a single GitHub user
-  getUser = async username => {
+  const getUser = async username => {
     setLoading(true);
 
     const res = await axios.get(
@@ -47,7 +47,7 @@ const App = () => {
   };
 
   // Get users repos
-  getUserRepos = async username => {
+  const getUserRepos = async username => {
     setLoading(true);
 
     const res = await axios.get(
@@ -61,25 +61,23 @@ const App = () => {
   };
 
   // Clear users from state
-  clearUsers = () => {
+  const clearUsers = () => {
     setUsers([]);
     setLoading(false);
   };
 
   // Set alert if form is empty
-  setAlert = (msg, type) => {
+  const showAlert = (msg, type) => {
     setAlert({ msg, type });
     setTimeout(() => setAlert(null), 4000);
   };
-
-  const { users, user, loading, repos } = this.state;
 
   return (
     <Router>
       <div>
         <Navbar />
         <div className="container">
-          <Alert alert={this.state.alert} />
+          <Alert alert={alert} />
           <Switch>
             <Route
               exact
@@ -87,10 +85,10 @@ const App = () => {
               render={() => (
                 <Fragment>
                   <Search
-                    searchUsers={this.searchUsers}
-                    clearUsers={this.clearUsers}
+                    searchUsers={searchUsers}
+                    clearUsers={clearUsers}
                     showClear={users.length > 0 ? true : false}
-                    setAlert={this.setAlert}
+                    setAlert={showAlert}
                   />
                   <Users users={users} loading={loading} />
                 </Fragment>
@@ -103,8 +101,8 @@ const App = () => {
               render={props => (
                 <User
                   {...props}
-                  getUser={this.getUser}
-                  getUserRepos={this.getUserRepos}
+                  getUser={getUser}
+                  getUserRepos={getUserRepos}
                   user={user}
                   repos={repos}
                   loading={loading}
