@@ -20,9 +20,7 @@ const App = () => {
 
   // search GitHub users
   searchUsers = async text => {
-    this.setState({
-      loading: true
-    });
+    setLoading(true);
 
     const res = await axios.get(
       `http://api.github.com/search/users?q=${text}&client_id=${
@@ -30,15 +28,13 @@ const App = () => {
       }&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
 
-    this.setState({
-      users: res.data.items,
-      loading: false
-    });
+    setUsers(res.data.items);
+    setLoading(false);
   };
 
   // Get a single GitHub user
   getUser = async username => {
-    this.setState({ loading: true });
+    setLoading(true);
 
     const res = await axios.get(
       `http://api.github.com/users/${username}?&client_id=${
@@ -46,15 +42,13 @@ const App = () => {
       }&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
 
-    this.setState({
-      user: res.data,
-      loading: false
-    });
+    setUser(res.data);
+    setLoading(false);
   };
 
   // Get users repos
   getUserRepos = async username => {
-    this.setState({ loading: true });
+    setLoading(true);
 
     const res = await axios.get(
       `http://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${
@@ -62,33 +56,20 @@ const App = () => {
       }&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
 
-    this.setState({
-      repos: res.data,
-      loading: false
-    });
+    setRepos(res.data);
+    setLoading(false);
   };
 
   // Clear users from state
   clearUsers = () => {
-    this.setState({
-      users: [],
-      loading: false
-    });
+    setUsers([]);
+    setLoading(false);
   };
 
   // Set alert if form is empty
   setAlert = (msg, type) => {
-    this.setState({
-      alert: { msg, type }
-    });
-
-    setTimeout(
-      () =>
-        this.setState({
-          alert: null
-        }),
-      4000
-    );
+    setAlert({ msg, type });
+    setTimeout(() => setAlert(null), 4000);
   };
 
   const { users, user, loading, repos } = this.state;
