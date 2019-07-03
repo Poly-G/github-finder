@@ -10,7 +10,7 @@ script:
 deploy:
   provider: surge
   skip_cleanup: true
-  domain: github-finder.surge.sh
+  domain: gh-finder.surge.sh
   project: ./build/
 on:
   branch: master
